@@ -193,7 +193,7 @@ def process_image(image_data):
         logger.error(f"Error in process_image: {str(e)}\n{traceback.format_exc()}")
         raise Exception(f"Error processing image: {str(e)}")
 
-@app.route('/process-image', methods=['POST'])
+@app.route('/', methods=['POST'])
 def handle_image_processing():
     try:
         data = request.json
