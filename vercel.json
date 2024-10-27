@@ -1,15 +1,9 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "api/process_image.py",
-            "use": "@vercel/python"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/api/(.*)",
-            "dest": "api/process_image.py"
-        }
+      {
+        "src": "Dockerfile",
+        "use": "@vercel/docker"
+      }
     ]
-}
+  }
