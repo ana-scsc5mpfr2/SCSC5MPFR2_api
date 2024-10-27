@@ -1,8 +1,15 @@
 {
-    "redirects": [
+    "version": 2,
+    "builds": [
         {
-            "source": "/",
-            "destination": "/api"
+            "src": "api/process_image.py",
+            "use": "@vercel/python"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "api/process_image.py"
         }
     ]
 }

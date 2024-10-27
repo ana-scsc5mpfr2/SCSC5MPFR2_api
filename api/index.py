@@ -193,7 +193,7 @@ def process_image(image_data):
         logger.error(f"Error in process_image: {str(e)}\n{traceback.format_exc()}")
         raise Exception(f"Error processing image: {str(e)}")
 
-@app.route('/', methods=['POST'])
+@app.route('/api/process-image', methods=['POST'])
 def handle_image_processing():
     try:
         data = request.json
@@ -210,5 +210,7 @@ def handle_image_processing():
         logger.error(f"Server error: {str(e)}\n{traceback.format_exc()}")
         return jsonify({'error': 'An unexpected error occurred', 'details': str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+# Entry point for Vercel
+def handler(event, context):
+    from flask import Response
+    return Response(app(event['body'], event['context']), mimetype='application/json')
