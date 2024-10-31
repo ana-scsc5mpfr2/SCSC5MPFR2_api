@@ -1,6 +1,5 @@
-flask
+Flask
+Flask-CORS
 numpy
-opencv-python-headless
-pillow
+Pillow
 matplotlib
-gunicorn
