@@ -129,6 +129,7 @@ def generar_plots_colores_interpolado_ampliado(imagen, colores_unicos, cantidad_
 
     centro = (imagen_color.size[0] // 2, imagen_color.size[1] // 2)
     valor_maximo_deseado = imagen_color.size[0] / 2
+    logger.debug("Re-assigned M2: %d", M)
     factor_escala = valor_maximo_deseado / M
     radios = np.round(np.arange(0, M + N, N) * factor_escala).astype(int)
     imagen_con_circulos = dibujar_circulos_concentricos(imagen_color, centro, radios)
@@ -205,6 +206,7 @@ def handle_image_processing():
         # Log the new values of U and V
         logger.debug("Re-assigned U: %d", U)
         logger.debug("Re-assigned V: %d", V)
+        logger.debug("Re-assigned M: %d", M)
         
         result = process_image(data['image'])
         return jsonify(result)
