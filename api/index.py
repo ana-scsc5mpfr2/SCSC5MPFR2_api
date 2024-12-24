@@ -20,7 +20,7 @@ MAX_SIZE = 2024
 V = 0 #15
 N = 2
 U = 0 #12
-M = U - N
+M = 0 #U - N
 
 def validate_image(image):
     """Validate image size and format"""
@@ -200,6 +200,7 @@ def handle_image_processing():
 
         V = int(data['uv'])
         U = V - 3
+        M = U - N
         
         # Log the new values of U and V
         logger.debug("Re-assigned U: %d", U)
