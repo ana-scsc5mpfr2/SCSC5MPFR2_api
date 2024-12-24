@@ -17,9 +17,9 @@ logger = logging.getLogger(__name__)
 
 # Constants
 MAX_SIZE = 2024
-V = 15
+V = 0 #15
 N = 2
-U = 12
+U = 0 #12
 M = U - N
 
 def validate_image(image):
@@ -198,6 +198,7 @@ def handle_image_processing():
             return jsonify({'error': 'No image data provided'}), 400
             
         V = int(data['uv'])
+        U = V - 3
         result = process_image(data['image'])
         return jsonify(result)
 
