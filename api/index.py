@@ -193,6 +193,9 @@ def process_image(image_data):
 
 @app.route('/process-image', methods=['POST'])
 def handle_image_processing():
+    global V  # Ensure V is treated as a global variable
+    global U  # Ensure U is treated as a global variable
+    global M  # Ensure M is treated as a global variable
     try:
         data = request.json
         if 'image' not in data:
