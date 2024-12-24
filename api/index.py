@@ -197,11 +197,14 @@ def handle_image_processing():
         if 'image' not in data:
             return jsonify({'error': 'No image data provided'}), 400
         
+
+        V = int(data['uv'])
+        U = V - 3
+        
         # Log the new values of U and V
         logger.debug("Re-assigned U: %d", U)
         logger.debug("Re-assigned V: %d", V)
-        V = int(data['uv'])
-        U = V - 3
+        
         result = process_image(data['image'])
         return jsonify(result)
 
