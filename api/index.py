@@ -197,7 +197,7 @@ def handle_image_processing():
         if 'image' not in data:
             return jsonify({'error': 'No image data provided'}), 400
             
-        V = int(datadata['uv'])
+        V = int(data['uv'])
         result = process_image(data['image'])
         return jsonify(result)
 
