@@ -130,8 +130,8 @@ def generar_plots_colores_interpolado_ampliado(imagen, colores_unicos, cantidad_
 
     centro = (imagen_color.size[0] // 2, imagen_color.size[1] // 2)
     valor_maximo_deseado = imagen_color.size[0] / 2
-    logger.debug("Re-assigned M2: %d", M)
-    factor_escala = valor_maximo_deseado / M
+    #logger.debug("Re-assigned M2: %d", M)
+    factor_escala = valor_maximo_deseado / V
     radios = np.round(np.linspace(0, V, Nc)  * factor_escala).astype(int)
     imagen_con_circulos = dibujar_circulos_concentricos(imagen_color, centro, radios)
 
