@@ -18,9 +18,10 @@ logger = logging.getLogger(__name__)
 # Constants
 MAX_SIZE = 2024
 V = 0 #15
-N = 2
-U = 0 #12
-M = 0 #U - N
+Nc = 0 # Número de círculos concéntricos +1 siempre
+# N = 2
+# U = 0 #12
+# M = 0 #U - N
 
 def validate_image(image):
     """Validate image size and format"""
@@ -131,7 +132,7 @@ def generar_plots_colores_interpolado_ampliado(imagen, colores_unicos, cantidad_
     valor_maximo_deseado = imagen_color.size[0] / 2
     logger.debug("Re-assigned M2: %d", M)
     factor_escala = valor_maximo_deseado / M
-    radios = np.round(np.arange(0, M + N, N) * factor_escala).astype(int)
+    radios = np.round(np.linspace(0, V, Nc)  * factor_escala).astype(int)
     imagen_con_circulos = dibujar_circulos_concentricos(imagen_color, centro, radios)
 
     return imagen_con_circulos, resultados_radiales
@@ -194,8 +195,8 @@ def process_image(image_data):
 @app.route('/process-image', methods=['POST'])
 def handle_image_processing():
     global V  # Ensure V is treated as a global variable
-    global U  # Ensure U is treated as a global variable
-    global M  # Ensure M is treated as a global variable
+    global Nc  # Ensure Nc is treated as a global variable
+    
     try:
         data = request.json
         if 'image' not in data:
@@ -203,13 +204,11 @@ def handle_image_processing():
         
 
         V = int(data['uv'])
-        U = V - 3
-        M = U - N
-        
-        # Log the new values of U and V
-        logger.debug("Re-assigned U: %d", U)
+        Nc = int(data['nc']) + 1
+        # Log the new values of V
         logger.debug("Re-assigned V: %d", V)
-        logger.debug("Re-assigned M: %d", M)
+         # Log the new values of Nc
+        logger.debug("Re-assigned Nc: %d", Nc)
         
         result = process_image(data['image'])
         return jsonify(result)
