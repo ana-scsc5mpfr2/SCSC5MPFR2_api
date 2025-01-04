@@ -164,7 +164,7 @@ def process_image(image_data):
             colores_unicos, 
             cantidad_a_mostrar=1, 
             picos=picos, 
-            ampliacion=15
+            ampliacion=120.49999999999999
         )
 
         # Convert processed image to base64
